@@ -148,13 +148,13 @@ export const ShareModal: React.FC<ShareModalProps> = ({ item, onClose }) => {
       onClick={onClose}
     >
       <div 
-        className="relative w-full max-w-2xl bg-[#FCFAF6] dark:bg-[#141D1A] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden my-4 text-right flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-2xl bg-[#FCFAF6] dark:bg-[#141D1A] border-2 border-emerald-600/40 dark:border-emerald-500/40 rounded-3xl shadow-2xl overflow-hidden my-4 text-right flex flex-col max-h-[92vh] ring-1 ring-black/10"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm sticky top-0 z-10">
-          <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800">
               <Share2 className="w-5 h-5" />
             </div>
             <div>
@@ -184,14 +184,14 @@ export const ShareModal: React.FC<ShareModalProps> = ({ item, onClose }) => {
             <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">
               اختر صيغة النشر المناسبة:
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               <button
                 type="button"
                 onClick={() => setSelectedFormat('full')}
-                className={`p-2.5 rounded-xl border text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 ${
+                className={`p-3 rounded-2xl border-2 text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 shadow-2xs ${
                   selectedFormat === 'full'
-                    ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-950 dark:text-emerald-200 font-bold shadow-xs'
-                    : 'border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
+                    ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/60 text-emerald-950 dark:text-emerald-200 font-bold ring-1 ring-emerald-500/20'
+                    : 'border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-800 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900'
                 }`}
               >
                 <FileText className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
@@ -201,10 +201,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({ item, onClose }) => {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('quote')}
-                className={`p-2.5 rounded-xl border text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 ${
+                className={`p-3 rounded-2xl border-2 text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 shadow-2xs ${
                   selectedFormat === 'quote'
-                    ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-950 dark:text-emerald-200 font-bold shadow-xs'
-                    : 'border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
+                    ? 'border-amber-500 bg-amber-50 dark:bg-amber-950/60 text-amber-950 dark:text-amber-200 font-bold ring-1 ring-amber-500/20'
+                    : 'border-stone-200 dark:border-stone-800 hover:border-amber-300 dark:hover:border-amber-800 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900'
                 }`}
               >
                 <Quote className="w-4 h-4 text-amber-600" />
@@ -214,10 +214,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({ item, onClose }) => {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('summary')}
-                className={`p-2.5 rounded-xl border text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 ${
+                className={`p-3 rounded-2xl border-2 text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 shadow-2xs ${
                   selectedFormat === 'summary'
-                    ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-950 dark:text-emerald-200 font-bold shadow-xs'
-                    : 'border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
+                    ? 'border-sky-500 bg-sky-50 dark:bg-sky-950/60 text-sky-950 dark:text-sky-200 font-bold ring-1 ring-sky-500/20'
+                    : 'border-stone-200 dark:border-stone-800 hover:border-sky-300 dark:hover:border-sky-800 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900'
                 }`}
               >
                 <Sparkles className="w-4 h-4 text-sky-600" />
@@ -227,13 +227,13 @@ export const ShareModal: React.FC<ShareModalProps> = ({ item, onClose }) => {
               <button
                 type="button"
                 onClick={() => setSelectedFormat('proofs_only')}
-                className={`p-2.5 rounded-xl border text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 ${
+                className={`p-3 rounded-2xl border-2 text-xs font-medium text-center transition-all flex flex-col items-center gap-1.5 shadow-2xs ${
                   selectedFormat === 'proofs_only'
-                    ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/50 text-emerald-950 dark:text-emerald-200 font-bold shadow-xs'
-                    : 'border-stone-200 dark:border-stone-800 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
+                    ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-950 dark:text-indigo-200 font-bold ring-1 ring-indigo-500/20'
+                    : 'border-stone-200 dark:border-stone-800 hover:border-indigo-300 dark:hover:border-indigo-800 text-stone-700 dark:text-stone-300 bg-white dark:bg-stone-900'
                 }`}
               >
-                <Quote className="w-4 h-4 text-emerald-600" />
+                <Quote className="w-4 h-4 text-indigo-600" />
                 <span>الأدلة والشواهد</span>
               </button>
             </div>

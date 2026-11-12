@@ -12,6 +12,7 @@ import { DataManagementModal } from './components/DataManagementModal';
 import { PillarsMatrixView } from './components/PillarsMatrixView';
 import { SeerahTimelineView } from './components/SeerahTimelineView';
 import { ShareModal } from './components/ShareModal';
+import { SectionHeaderBanner } from './components/SectionHeaderBanner';
 import { KnowledgeItem, MainCategory, IslamicField } from './types';
 import { SearchX, ArrowUp, Plus } from 'lucide-react';
 
@@ -21,6 +22,7 @@ const MainAppContent: React.FC = () => {
     activeCategory, 
     clearFilters, 
     searchQuery,
+    selectedField,
     items 
   } = useLibrary();
 
@@ -121,6 +123,15 @@ const MainAppContent: React.FC = () => {
             {activeCategory !== 'pillars_matrix' && activeCategory !== 'seerah' && (
               <div className="w-full">
                 
+                {/* Dedicated Section Header Banner with Custom Addition Button */}
+                <SectionHeaderBanner
+                  category={activeCategory}
+                  itemCount={filteredItems.length}
+                  totalCount={items.length}
+                  selectedField={selectedField}
+                  onAddNew={(cat, field, title) => handleOpenNewItem(cat, field, title)}
+                />
+
                 {/* Results Header Count & Action */}
                 <div className="w-full flex items-center justify-between text-xs sm:text-sm text-stone-500 dark:text-stone-400 mb-6 pb-2 border-b border-stone-200/60 dark:border-stone-800/60">
                   <div className="flex items-center gap-2">
@@ -138,10 +149,11 @@ const MainAppContent: React.FC = () => {
                       </div>
                     )}
                     <button
-                      onClick={() => handleOpenNewItem()}
-                      className="hidden sm:flex items-center gap-1 text-xs font-bold text-emerald-800 dark:text-emerald-300 hover:underline"
+                      onClick={() => handleOpenNewItem(activeCategory !== 'all' && activeCategory !== 'favorites' ? activeCategory : 'terms')}
+                      className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-800 hover:bg-emerald-900 dark:bg-emerald-700 dark:hover:bg-emerald-600 text-white text-xs font-bold transition-all shadow-xs shrink-0 cursor-pointer"
+                      title="إضافة مادة جديدة في هذا القسم"
                     >
-                      <Plus className="w-3.5 h-3.5" />
+                      <Plus className="w-3.5 h-3.5 text-amber-300" />
                       <span>إضافة مادة في هذا القسم</span>
                     </button>
                   </div>

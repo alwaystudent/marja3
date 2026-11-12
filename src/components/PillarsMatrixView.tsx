@@ -77,72 +77,42 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
       </div>
 
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 p-1.5 bg-stone-200/50 dark:bg-stone-900/60 rounded-xl">
-        <button
-          onClick={() => setActiveTab('salah')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-            activeTab === 'salah'
-              ? 'bg-white dark:bg-stone-800 text-emerald-900 dark:text-emerald-100 shadow-sm font-bold'
-              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
-          }`}
-        >
-          أركان وواجبات وشروط الصلاة
-        </button>
-
-        <button
-          onClick={() => setActiveTab('tawheed')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-            activeTab === 'tawheed'
-              ? 'bg-white dark:bg-stone-800 text-emerald-900 dark:text-emerald-100 shadow-sm font-bold'
-              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
-          }`}
-        >
-          شروط لا إله إلا الله السبعة
-        </button>
-
-        <button
-          onClick={() => setActiveTab('wudu')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-            activeTab === 'wudu'
-              ? 'bg-white dark:bg-stone-800 text-emerald-900 dark:text-emerald-100 shadow-sm font-bold'
-              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
-          }`}
-        >
-          فروض الوضوء ونواقضه
-        </button>
-
-        <button
-          onClick={() => setActiveTab('hajj')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-            activeTab === 'hajj'
-              ? 'bg-white dark:bg-stone-800 text-emerald-900 dark:text-emerald-100 shadow-sm font-bold'
-              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
-          }`}
-        >
-          أركان الحج وواجباته
-        </button>
-
-        <button
-          onClick={() => setActiveTab('zakah')}
-          className={`px-4 py-2 text-xs sm:text-sm font-medium rounded-lg transition-all ${
-            activeTab === 'zakah'
-              ? 'bg-white dark:bg-stone-800 text-emerald-900 dark:text-emerald-100 shadow-sm font-bold'
-              : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100'
-          }`}
-        >
-          شروط الزكاة ومصارفها
-        </button>
+      <div className="flex flex-wrap gap-2 p-2 bg-stone-100 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl shadow-xs">
+        {[
+          { id: 'salah', label: 'أركان وواجبات وشروط الصلاة', color: 'border-emerald-600 text-emerald-900 dark:text-emerald-200' },
+          { id: 'tawheed', label: 'شروط لا إله إلا الله السبعة', color: 'border-amber-600 text-amber-900 dark:text-amber-200' },
+          { id: 'wudu', label: 'فروض الوضوء ونواقضه', color: 'border-blue-600 text-blue-900 dark:text-blue-200' },
+          { id: 'hajj', label: 'أركان الحج وواجباته', color: 'border-teal-600 text-teal-900 dark:text-teal-200' },
+          { id: 'zakah', label: 'شروط الزكاة ومصارفها', color: 'border-indigo-600 text-indigo-900 dark:text-indigo-200' },
+        ].map((tab) => {
+          const isActive = activeTab === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              className={`px-4 py-2 text-xs sm:text-sm rounded-xl font-bold transition-all border ${
+                isActive
+                  ? `bg-white dark:bg-stone-800 shadow-sm ${tab.color} border-current ring-1 ring-current/20 scale-102`
+                  : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-stone-200/60 dark:hover:bg-stone-800/60'
+              }`}
+            >
+              {tab.label}
+            </button>
+          );
+        })}
       </div>
 
       {/* Tab 1: Salah Matrix */}
       {activeTab === 'salah' && (
-        <div className="space-y-4">
+        <div className="space-y-5">
           
-          {/* Rules Summary Card with Edit/Details link */}
-          <div className="p-4 rounded-xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/60 flex items-start justify-between gap-3">
+          {/* Rules Summary Card with Distinct Border & Accent */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-50 via-white to-emerald-50/40 dark:from-emerald-950/40 dark:via-stone-900 dark:to-emerald-950/20 border-2 border-emerald-500/40 dark:border-emerald-600/40 shadow-xs flex items-start justify-between gap-4">
             <div className="text-xs sm:text-sm text-stone-800 dark:text-stone-200 leading-relaxed">
-              <span className="font-bold text-emerald-900 dark:text-emerald-300 ml-1">ضابط الفرق الفقهي:</span>
-              الركن ما كان جزءاً من ماهية الصلاة لا يسقط عمداً ولا سهواً ولا جهلاً ولا يجبره سجود السهو، والواجب ما أمر به الشارع في الصلاة ويسقط بالسهو ويجبره سجود السهو وتبطل بتركه عمداً، والشرط ما يتقدم الصلاة ويستمر فيها.
+              <span className="inline-block px-2.5 py-1 rounded-md bg-emerald-100 dark:bg-emerald-900/80 text-emerald-900 dark:text-emerald-200 font-bold ml-2 border border-emerald-300 dark:border-emerald-700">
+                ضابط الفرق الفقهي الأساسي:
+              </span>
+              الركن ما كان جزءاً من ماهية الصلاة لا يسقط عمداً ولا سهواً ولا جهلاً ولا يجبره سجود السهو، والواجب ما أمر به الشارع في الصلاة ويسقط بالسهو ويجبره سجود السهو وتبطل بتركه عمداً، والشرط ما يتقدم الصلاة ويستمر فيها كطهارة واستقبال قبلة.
             </div>
             {salahItem && (
               <div className="flex items-center gap-1 shrink-0">
@@ -173,24 +143,29 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
             )}
           </div>
 
-          {/* Section: Shuroot (9) */}
-          <div className="bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+          {/* Section: Shuroot (9) - Distinguished Blue Frame */}
+          <div className="bg-white dark:bg-[#121B18] border-2 border-blue-400/60 dark:border-blue-600/50 rounded-2xl overflow-hidden shadow-xs">
             <button
               onClick={() => toggleSection('salah-shuroot')}
-              className="w-full p-4 flex items-center justify-between text-right bg-stone-50 dark:bg-stone-900/60 hover:bg-stone-100/70 transition-colors"
+              className="w-full p-4.5 flex items-center justify-between text-right bg-blue-50/60 dark:bg-blue-950/30 hover:bg-blue-100/50 dark:hover:bg-blue-900/30 transition-colors"
             >
-              <div className="flex items-center gap-2">
-                <span className="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 font-mono font-bold text-xs flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-xl bg-blue-600 text-white font-mono font-bold text-sm flex items-center justify-center shadow-xs">
                   9
                 </span>
-                <span className="font-heading font-bold text-base sm:text-lg text-stone-900 dark:text-stone-100">
-                  شروط صحة الصلاة (تسعة شروط تتقدم الصلاة وتستمر فيها)
-                </span>
+                <div>
+                  <span className="font-heading font-bold text-base sm:text-lg text-blue-950 dark:text-blue-100 block">
+                    شروط صحة الصلاة
+                  </span>
+                  <span className="text-xs text-blue-800/80 dark:text-blue-300">
+                    تسعة شروط تتقدم الصلاة وتستمر فيها
+                  </span>
+                </div>
               </div>
-              {expandedSection === 'salah-shuroot' ? <ChevronUp className="w-5 h-5 text-stone-400" /> : <ChevronDown className="w-5 h-5 text-stone-400" />}
+              {expandedSection === 'salah-shuroot' ? <ChevronUp className="w-5 h-5 text-blue-700 dark:text-blue-300" /> : <ChevronDown className="w-5 h-5 text-blue-700 dark:text-blue-300" />}
             </button>
             {expandedSection === 'salah-shuroot' && (
-              <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 border-t border-stone-200 dark:border-stone-800">
+              <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 border-t border-blue-200/60 dark:border-blue-900/40 bg-stone-50/40 dark:bg-stone-900/30">
                 {[
                   { title: '1. الإسلام', desc: 'ضده الكفر، وعمل الكافر مردود بنص القرآن.' },
                   { title: '2. العقل', desc: 'ضده الجنون، فالقلم مرفوع عن المجنون حتى يعقل.' },
@@ -202,33 +177,38 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
                   { title: '8. استقبال القبلة', desc: 'وهي الكعبة المشرفة لمن قدر عليها بحسب قربه وبعده.' },
                   { title: '9. النية', desc: 'محلها القلب ولا يجوز التلفظ بها لأن التلفظ بدعة.' },
                 ].map((s, idx) => (
-                  <div key={idx} className="p-3.5 rounded-lg bg-stone-50 dark:bg-stone-900 border border-stone-200/70 dark:border-stone-800">
-                    <div className="font-bold text-sm text-stone-900 dark:text-stone-100">{s.title}</div>
-                    <div className="text-xs text-stone-600 dark:text-stone-400 mt-1">{s.desc}</div>
+                  <div key={idx} className="p-3.5 rounded-xl bg-white dark:bg-stone-900 border-2 border-blue-200 dark:border-blue-900/60 shadow-2xs hover:border-blue-400 transition-colors">
+                    <div className="font-bold text-sm text-blue-950 dark:text-blue-200">{s.title}</div>
+                    <div className="text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">{s.desc}</div>
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Section: Arkan (14) */}
-          <div className="bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+          {/* Section: Arkan (14) - Distinguished Emerald Frame */}
+          <div className="bg-white dark:bg-[#121B18] border-2 border-emerald-500/60 dark:border-emerald-600/50 rounded-2xl overflow-hidden shadow-xs">
             <button
               onClick={() => toggleSection('salah-arkan')}
-              className="w-full p-4 flex items-center justify-between text-right bg-stone-50 dark:bg-stone-900/60 hover:bg-stone-100/70 transition-colors"
+              className="w-full p-4.5 flex items-center justify-between text-right bg-emerald-50/60 dark:bg-emerald-950/30 hover:bg-emerald-100/50 dark:hover:bg-emerald-900/30 transition-colors"
             >
-              <div className="flex items-center gap-2">
-                <span className="w-7 h-7 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-mono font-bold text-xs flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-xl bg-emerald-700 text-white font-mono font-bold text-sm flex items-center justify-center shadow-xs">
                   14
                 </span>
-                <span className="font-heading font-bold text-base sm:text-lg text-stone-900 dark:text-stone-100">
-                  أركان الصلاة (أربعة عشر ركناً لا تسقط عمداً ولا سهواً)
-                </span>
+                <div>
+                  <span className="font-heading font-bold text-base sm:text-lg text-emerald-950 dark:text-emerald-100 block">
+                    أركان الصلاة
+                  </span>
+                  <span className="text-xs text-emerald-800/80 dark:text-emerald-300">
+                    أربعة عشر ركناً لا تسقط عمداً ولا سهواً ولا يجبرها سجود السهو
+                  </span>
+                </div>
               </div>
-              {expandedSection === 'salah-arkan' ? <ChevronUp className="w-5 h-5 text-stone-400" /> : <ChevronDown className="w-5 h-5 text-stone-400" />}
+              {expandedSection === 'salah-arkan' ? <ChevronUp className="w-5 h-5 text-emerald-700 dark:text-emerald-300" /> : <ChevronDown className="w-5 h-5 text-emerald-700 dark:text-emerald-300" />}
             </button>
             {expandedSection === 'salah-arkan' && (
-              <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 border-t border-stone-200 dark:border-stone-800">
+              <div className="p-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 border-t border-emerald-200/60 dark:border-emerald-900/40 bg-stone-50/40 dark:bg-stone-900/30">
                 {[
                   '1. القيام في الفرض مع القدرة',
                   '2. تكبيرة الإحرام (قول: الله أكبر)',
@@ -245,7 +225,7 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
                   '13. التسليمتان (السلام عليكم ورحمة الله)',
                   '14. الترتيب بين هذه الأركان',
                 ].map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-lg bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/50 dark:border-emerald-900/30 text-xs sm:text-sm font-medium text-stone-900 dark:text-stone-100 flex items-center gap-2">
+                  <div key={idx} className="p-3.5 rounded-xl bg-white dark:bg-stone-900 border-2 border-emerald-200 dark:border-emerald-900/60 text-xs sm:text-sm font-semibold text-emerald-950 dark:text-emerald-100 flex items-center gap-2.5 shadow-2xs hover:border-emerald-500 transition-colors">
                     <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                     <span>{item}</span>
                   </div>
@@ -254,24 +234,29 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
             )}
           </div>
 
-          {/* Section: Wajibat (8) */}
-          <div className="bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 rounded-xl overflow-hidden">
+          {/* Section: Wajibat (8) - Distinguished Amber Frame */}
+          <div className="bg-white dark:bg-[#121B18] border-2 border-amber-500/60 dark:border-amber-600/50 rounded-2xl overflow-hidden shadow-xs">
             <button
               onClick={() => toggleSection('salah-wajibat')}
-              className="w-full p-4 flex items-center justify-between text-right bg-stone-50 dark:bg-stone-900/60 hover:bg-stone-100/70 transition-colors"
+              className="w-full p-4.5 flex items-center justify-between text-right bg-amber-50/60 dark:bg-amber-950/30 hover:bg-amber-100/50 dark:hover:bg-amber-900/30 transition-colors"
             >
-              <div className="flex items-center gap-2">
-                <span className="w-7 h-7 rounded-full bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-mono font-bold text-xs flex items-center justify-center">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-8 rounded-xl bg-amber-600 text-white font-mono font-bold text-sm flex items-center justify-center shadow-xs">
                   8
                 </span>
-                <span className="font-heading font-bold text-base sm:text-lg text-stone-900 dark:text-stone-100">
-                  واجبات الصلاة (ثمانية واجبات تجبر بسجود السهو)
-                </span>
+                <div>
+                  <span className="font-heading font-bold text-base sm:text-lg text-amber-950 dark:text-amber-100 block">
+                    واجبات الصلاة
+                  </span>
+                  <span className="text-xs text-amber-800/80 dark:text-amber-300">
+                    ثمانية واجبات تسقط بالسهو وتجبر بسجود السهو وتبطل بتركه عمداً
+                  </span>
+                </div>
               </div>
-              {expandedSection === 'salah-wajibat' ? <ChevronUp className="w-5 h-5 text-stone-400" /> : <ChevronDown className="w-5 h-5 text-stone-400" />}
+              {expandedSection === 'salah-wajibat' ? <ChevronUp className="w-5 h-5 text-amber-700 dark:text-amber-300" /> : <ChevronDown className="w-5 h-5 text-amber-700 dark:text-amber-300" />}
             </button>
             {expandedSection === 'salah-wajibat' && (
-              <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-stone-200 dark:border-stone-800">
+              <div className="p-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 border-t border-amber-200/60 dark:border-amber-900/40 bg-stone-50/40 dark:bg-stone-900/30">
                 {[
                   '1. التكبيرات لغير الإحرام (تكبيرات الانتقال)',
                   '2. قول: «سمع الله لمن حمده» للإمام والمنفرد',
@@ -282,7 +267,7 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
                   '7. التشهد الأول',
                   '8. الجلوس للتشهد الأول',
                 ].map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-lg bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-900/30 text-xs sm:text-sm text-stone-800 dark:text-stone-200">
+                  <div key={idx} className="p-3.5 rounded-xl bg-white dark:bg-stone-900 border-2 border-amber-200 dark:border-amber-900/60 text-xs sm:text-sm font-medium text-stone-800 dark:text-stone-200 shadow-2xs hover:border-amber-500 transition-colors">
                     {item}
                   </div>
                 ))}
@@ -371,20 +356,20 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
                 explanation: 'البراءة الصريحة من عبادة كل ما سوى الله من الأصنام والقبور والطواغيت واعتقاد بطلانها.'
               }
             ].map((item, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 space-y-2">
-                <div className="flex items-center justify-between">
-                  <h4 className="font-heading font-bold text-base sm:text-lg text-emerald-900 dark:text-emerald-200">
+              <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-emerald-400/50 dark:border-emerald-700/50 space-y-2.5 shadow-xs hover:border-emerald-600 transition-colors">
+                <div className="flex items-center justify-between gap-2 border-b border-stone-100 dark:border-stone-800 pb-2">
+                  <h4 className="font-heading font-bold text-base sm:text-lg text-emerald-950 dark:text-emerald-100">
                     {item.title}
                   </h4>
-                  <span className="text-xs text-rose-700 dark:text-rose-400 font-medium">
+                  <span className="text-xs px-2.5 py-0.5 rounded-full bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 border border-rose-300 dark:border-rose-800 font-medium">
                     ضده: {item.opposite}
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+                <p className="text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
                   {item.explanation}
                 </p>
-                <div className="p-2 rounded bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-900/30 text-xs font-serif text-amber-950 dark:text-amber-200">
-                  الدليل: {item.proof}
+                <div className="p-2.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-800/80 text-xs font-serif text-amber-950 dark:text-amber-200">
+                  <span className="font-bold font-sans ml-1 text-amber-800 dark:text-amber-300">الدليل:</span> {item.proof}
                 </div>
               </div>
             ))}
@@ -396,8 +381,8 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
       {activeTab === 'wudu' && (
         <div className="space-y-4">
           {wuduItem && (
-            <div className="p-3 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-between">
-              <span className="text-xs font-bold text-stone-700 dark:text-stone-300">
+            <div className="p-3.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 flex items-center justify-between">
+              <span className="text-xs font-bold text-stone-800 dark:text-stone-200">
                 المرجع المسجل: {wuduItem.title}
               </span>
               <div className="flex items-center gap-1.5">
@@ -419,33 +404,35 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 space-y-3">
-              <h3 className="font-heading font-bold text-lg text-emerald-900 dark:text-emerald-200 flex items-center gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {/* Furood (Emerald) */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-emerald-500/60 dark:border-emerald-600/50 shadow-xs space-y-4">
+              <h3 className="font-heading font-bold text-lg text-emerald-950 dark:text-emerald-200 flex items-center gap-2 pb-2 border-b border-emerald-100 dark:border-emerald-900/50">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600" />
                 <span>فروض الوضوء الستة (المنصوصة في آية المائدة):</span>
               </h3>
-              <ol className="space-y-2 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">1. غسل الوجه كله، ومنه المضمضة والاستنشاق.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">2. غسل اليدين مع المرفقين.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">3. مسح الرأس كله، ومنه الأذنان.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">4. غسل الرجلين مع الكعبين.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">5. الترتيب بين الأعضاء كما ورد في القرآن.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">6. الموالاة (ألا يؤخر غسل عضو حتى يجف الذي قبله).</li>
+              <ol className="space-y-2.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+                <li className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 font-medium">1. غسل الوجه كله، ومنه المضمضة والاستنشاق.</li>
+                <li className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 font-medium">2. غسل اليدين مع المرفقين.</li>
+                <li className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 font-medium">3. مسح الرأس كله، ومنه الأذنان.</li>
+                <li className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 font-medium">4. غسل الرجلين مع الكعبين.</li>
+                <li className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 font-medium">5. الترتيب بين الأعضاء كما ورد في القرآن.</li>
+                <li className="p-3 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 font-medium">6. الموالاة (ألا يؤخر غسل عضو حتى يجف الذي قبله).</li>
               </ol>
             </div>
 
-            <div className="p-5 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 space-y-3">
-              <h3 className="font-heading font-bold text-lg text-rose-900 dark:text-rose-300 flex items-center gap-2">
+            {/* Nawagidh (Rose) */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-rose-400/60 dark:border-rose-600/50 shadow-xs space-y-4">
+              <h3 className="font-heading font-bold text-lg text-rose-950 dark:text-rose-200 flex items-center gap-2 pb-2 border-b border-rose-100 dark:border-rose-900/50">
                 <AlertCircle className="w-5 h-5 text-rose-600" />
                 <span>نواقض الوضوء المعتبرة:</span>
               </h3>
-              <ul className="space-y-2 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">1. الخارج من السبيلين من بول أو غائط أو ريح أو مني أو مذي.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">2. زوال العقل بإغماء أو سكر أو نوم مستغرق ثقيل لا يشعر معه بالحدث.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">3. مس الفرج باليد بدون حائل لشهوة على الراجح.</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">4. أكل لحم الإبل (الإبل خاصة دون سائر الأنعام).</li>
-                <li className="p-2.5 rounded bg-stone-50 dark:bg-stone-900">5. الردة عن الإسلام نسأل الله العافية (﴿لَئِنْ أَشْرَكْتَ لَيَحْبَطَنَّ عَمَلُكَ﴾).</li>
+              <ul className="space-y-2.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+                <li className="p-3 rounded-xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 font-medium">1. الخارج من السبيلين من بول أو غائط أو ريح أو مني أو مذي.</li>
+                <li className="p-3 rounded-xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 font-medium">2. زوال العقل بإغماء أو سكر أو نوم مستغرق ثقيل لا يشعر معه بالحدث.</li>
+                <li className="p-3 rounded-xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 font-medium">3. مس الفرج باليد بدون حائل لشهوة على الراجح.</li>
+                <li className="p-3 rounded-xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 font-medium">4. أكل لحم الإبل (الإبل خاصة دون سائر الأنعام).</li>
+                <li className="p-3 rounded-xl bg-rose-50/40 dark:bg-rose-950/20 border border-rose-200/60 dark:border-rose-900/40 font-medium">5. الردة عن الإسلام نسأل الله العافية (﴿لَئِنْ أَشْرَكْتَ لَيَحْبَطَنَّ عَمَلُكَ﴾).</li>
               </ul>
             </div>
           </div>
@@ -454,39 +441,39 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
 
       {/* Tab 4: Hajj Matrix */}
       {activeTab === 'hajj' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-5 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 space-y-3">
-            <h3 className="font-heading font-bold text-lg text-emerald-900 dark:text-emerald-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-emerald-500/60 dark:border-emerald-600/50 shadow-xs space-y-4">
+            <h3 className="font-heading font-bold text-lg text-emerald-950 dark:text-emerald-200 pb-2 border-b border-emerald-100 dark:border-emerald-900/50">
               أركان الحج الأربعة (لا يصح الحج إلا بها جميعاً):
             </h3>
-            <div className="space-y-2 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
-              <div className="p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-900/30">
-                <span className="font-bold">1. الإحرام:</span> نية الدخول في النسك من الميقات.
+            <div className="space-y-2.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+              <div className="p-3.5 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40">
+                <span className="font-bold text-emerald-950 dark:text-emerald-200">1. الإحرام:</span> نية الدخول في النسك من الميقات.
               </div>
-              <div className="p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-900/30">
-                <span className="font-bold">2. الوقوف بعرفة:</span> أعظم أركانه لقوله ﷺ: «الحج عرفة».
+              <div className="p-3.5 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40">
+                <span className="font-bold text-emerald-950 dark:text-emerald-200">2. الوقوف بعرفة:</span> أعظم أركانه لقوله ﷺ: «الحج عرفة».
               </div>
-              <div className="p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-900/30">
-                <span className="font-bold">3. طواف الإفاضة:</span> لقوله تعالى: ﴿وَلْيَطَّوَّفُوا بِالْبَيْتِ الْعَتِيقِ﴾.
+              <div className="p-3.5 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40">
+                <span className="font-bold text-emerald-950 dark:text-emerald-200">3. طواف الإفاضة:</span> لقوله تعالى: ﴿وَلْيَطَّوَّفُوا بِالْبَيْتِ الْعَتِيقِ﴾.
               </div>
-              <div className="p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-900/30">
-                <span className="font-bold">4. السعي بين الصفا والمروة:</span> لقوله ﷺ: «اسعوا فإن الله كتب عليكم السعي».
+              <div className="p-3.5 rounded-xl bg-emerald-50/40 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40">
+                <span className="font-bold text-emerald-950 dark:text-emerald-200">4. السعي بين الصفا والمروة:</span> لقوله ﷺ: «اسعوا فإن الله كتب عليكم السعي».
               </div>
             </div>
           </div>
 
-          <div className="p-5 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 space-y-3">
-            <h3 className="font-heading font-bold text-lg text-amber-900 dark:text-amber-200">
+          <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-amber-500/60 dark:border-amber-600/50 shadow-xs space-y-4">
+            <h3 className="font-heading font-bold text-lg text-amber-950 dark:text-amber-200 pb-2 border-b border-amber-100 dark:border-amber-900/50">
               واجبات الحج السبعة (من ترك واجباً منها لزمه دم):
             </h3>
-            <ul className="space-y-1.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">1. الإحرام من الميقات المعتبر شرعاً.</li>
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">2. الوقوف بعرفة إلى غروب الشمس لمن وقف بها نهاراً.</li>
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">3. المبيت بمزدلفة ليلة النحر إلى نصف الليل على الأقل.</li>
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">4. المبيت بمنى ليالي أيام التشريق.</li>
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">5. رمي الجمرات مرتبة (الصغرى ثم الوسطى ثم الكبرى).</li>
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">6. الحلق أو التقصير للرجال، والتقصير للنساء قدر أنملة.</li>
-              <li className="p-2 rounded bg-stone-50 dark:bg-stone-900">7. طواف الوداع (يسقط عن الحائض والنفساء).</li>
+            <ul className="space-y-2 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">1. الإحرام من الميقات المعتبر شرعاً.</li>
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">2. الوقوف بعرفة إلى غروب الشمس لمن وقف بها نهاراً.</li>
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">3. المبيت بمزدلفة ليلة النحر إلى نصف الليل على الأقل.</li>
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">4. المبيت بمنى ليالي أيام التشريق.</li>
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">5. رمي الجمرات مرتبة (الصغرى ثم الوسطى ثم الكبرى).</li>
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">6. الحلق أو التقصير للرجال، والتقصير للنساء قدر أنملة.</li>
+              <li className="p-2.5 rounded-xl bg-amber-50/40 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40">7. طواف الوداع (يسقط عن الحائض والنفساء).</li>
             </ul>
           </div>
         </div>
@@ -494,25 +481,25 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
 
       {/* Tab 5: Zakah Matrix */}
       {activeTab === 'zakah' && (
-        <div className="space-y-4">
-          <div className="p-4 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800">
-            <h3 className="font-heading font-bold text-lg text-stone-900 dark:text-stone-100 mb-2">
+        <div className="space-y-5">
+          <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-indigo-400/60 dark:border-indigo-600/50 shadow-xs">
+            <h3 className="font-heading font-bold text-lg text-indigo-950 dark:text-indigo-200 mb-3 pb-2 border-b border-indigo-100 dark:border-indigo-900/50">
               شروط وجوب الزكاة:
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs text-center">
-              <div className="p-2 rounded bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">1. الإسلام</div>
-              <div className="p-2 rounded bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">2. الحرية</div>
-              <div className="p-2 rounded bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">3. ملك النصاب الشرعي</div>
-              <div className="p-2 rounded bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">4. استقرار الملك التام</div>
-              <div className="p-2 rounded bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 col-span-2 sm:col-span-1">5. مضي الحول الكامل</div>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 text-xs text-center">
+              <div className="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 font-bold text-indigo-950 dark:text-indigo-200">1. الإسلام</div>
+              <div className="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 font-bold text-indigo-950 dark:text-indigo-200">2. الحرية</div>
+              <div className="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 font-bold text-indigo-950 dark:text-indigo-200">3. ملك النصاب الشرعي</div>
+              <div className="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 font-bold text-indigo-950 dark:text-indigo-200">4. استقرار الملك التام</div>
+              <div className="p-3 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800 font-bold text-indigo-950 dark:text-indigo-200 col-span-2 sm:col-span-1">5. مضي الحول الكامل</div>
             </div>
           </div>
 
-          <div className="p-5 rounded-xl bg-white dark:bg-[#141E1B] border border-stone-200 dark:border-stone-800 space-y-3">
-            <h3 className="font-heading font-bold text-lg text-emerald-900 dark:text-emerald-200">
+          <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#121B18] border-2 border-emerald-500/60 dark:border-emerald-600/50 shadow-xs space-y-4">
+            <h3 className="font-heading font-bold text-lg text-emerald-950 dark:text-emerald-200 pb-2 border-b border-emerald-100 dark:border-emerald-900/50">
               مصارف الزكاة الثمانية بنص سورة التوبة (الآية 60):
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
               {[
                 { title: '1. الفقراء', desc: 'الذين لا يجدون شيئاً أو يجدون أقل من نصف الكفاية.' },
                 { title: '2. المساكين', desc: 'الذين يجدون نصف الكفاية أو أكثرها ولكن لا تكفيهم تماماً.' },
@@ -523,9 +510,9 @@ export const PillarsMatrixView: React.FC<PillarsMatrixViewProps> = ({
                 { title: '7. في سبيل الله', desc: 'المجاهدون المتطوعون في سبيل الله وإعداد عدتهم.' },
                 { title: '8. ابن السبيل', desc: 'المسافر المنقطع به الذي نفدت نفقته ليصل إلى بلده.' },
               ].map((m, idx) => (
-                <div key={idx} className="p-3 rounded-lg bg-stone-50 dark:bg-stone-900 border border-stone-200/70 dark:border-stone-800">
-                  <div className="font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100">{m.title}</div>
-                  <div className="text-[11px] text-stone-600 dark:text-stone-400 mt-1">{m.desc}</div>
+                <div key={idx} className="p-3.5 rounded-xl bg-emerald-50/30 dark:bg-emerald-950/20 border border-emerald-200/70 dark:border-emerald-800/60 hover:border-emerald-400 transition-colors">
+                  <div className="font-bold text-xs sm:text-sm text-emerald-950 dark:text-emerald-200">{m.title}</div>
+                  <div className="text-[11px] text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">{m.desc}</div>
                 </div>
               ))}
             </div>

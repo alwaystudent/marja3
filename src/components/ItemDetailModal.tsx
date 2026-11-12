@@ -93,7 +93,7 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-[#FCFAF6] dark:bg-[#141D1A] border border-stone-300 dark:border-stone-700 rounded-2xl shadow-2xl overflow-hidden my-6 text-right max-h-[92vh] flex flex-col"
+        className="relative w-full max-w-4xl bg-[#FCFAF6] dark:bg-[#141D1A] border-2 border-emerald-600/40 dark:border-emerald-500/40 rounded-3xl shadow-2xl overflow-hidden my-6 text-right max-h-[92vh] flex flex-col ring-1 ring-black/10"
         onClick={(e) => e.stopPropagation()}
       >
         
@@ -229,18 +229,18 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
 
           {/* Conditions / Steps Checklist if present */}
           {item.conditions && item.conditions.length > 0 && (
-            <div className="bg-white dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800 rounded-xl p-5">
-              <h4 className="font-heading text-lg font-bold text-stone-900 dark:text-stone-100 mb-3 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
+            <div className="bg-emerald-50/30 dark:bg-emerald-950/20 border-2 border-emerald-500/50 dark:border-emerald-700/50 rounded-2xl p-5 sm:p-6 shadow-2xs">
+              <h4 className="font-heading text-lg font-bold text-emerald-950 dark:text-emerald-100 mb-3 flex items-center gap-2 pb-2 border-b border-emerald-200/50 dark:border-emerald-800/50">
+                <BookOpen className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                 <span>الشروط والأركان والضوابط المقررة:</span>
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {item.conditions.map((cond, idx) => (
-                  <li key={idx} className="flex items-start gap-2.5 text-sm sm:text-base text-stone-700 dark:text-stone-300">
-                    <span className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5">
+                  <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-stone-800 dark:text-stone-200 p-2.5 rounded-xl bg-white/70 dark:bg-stone-900/60 border border-emerald-200/40 dark:border-emerald-900/40">
+                    <span className="w-6 h-6 rounded-lg bg-emerald-700 text-white flex items-center justify-center text-xs font-mono font-bold shrink-0 mt-0.5 shadow-2xs">
                       {idx + 1}
                     </span>
-                    <span>{cond}</span>
+                    <span className="leading-relaxed">{cond}</span>
                   </li>
                 ))}
               </ul>
@@ -249,16 +249,16 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
 
           {/* Proofs & Evidence from Quran & Sunnah */}
           {item.proofs && item.proofs.length > 0 && (
-            <div className="bg-amber-50/50 dark:bg-amber-950/20 border border-amber-200/70 dark:border-amber-900/50 rounded-xl p-5">
-              <h4 className="font-heading text-lg font-bold text-amber-950 dark:text-amber-200 mb-3 flex items-center gap-2">
-                <Quote className="w-4 h-4 text-amber-700 dark:text-amber-400" />
+            <div className="bg-amber-50/70 dark:bg-amber-950/30 border-2 border-amber-300 dark:border-amber-800/80 rounded-2xl p-5 sm:p-6 shadow-2xs">
+              <h4 className="font-heading text-lg font-bold text-amber-950 dark:text-amber-200 mb-3 flex items-center gap-2 pb-2 border-b border-amber-200 dark:border-amber-800/60">
+                <Quote className="w-5 h-5 text-amber-700 dark:text-amber-400" />
                 <span>الشواهد والأدلة من الكتاب والسنة الصحيحة:</span>
               </h4>
               <div className="space-y-3">
                 {item.proofs.map((proof, idx) => (
                   <div 
                     key={idx}
-                    className="p-3 bg-white/70 dark:bg-stone-900/70 rounded-lg border border-amber-200/50 dark:border-amber-900/30 font-serif text-sm sm:text-base leading-relaxed text-stone-800 dark:text-stone-200"
+                    className="p-3.5 bg-white/80 dark:bg-stone-900/80 rounded-xl border border-amber-300 dark:border-amber-800/60 font-serif text-sm sm:text-base leading-relaxed text-stone-900 dark:text-stone-100 shadow-2xs"
                   >
                     {proof}
                   </div>
@@ -269,21 +269,21 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
 
           {/* Scholars' Quotes & Sayings */}
           {item.scholarsSayings && item.scholarsSayings.length > 0 && (
-            <div className="space-y-3">
-              <h4 className="font-heading text-lg font-bold text-stone-900 dark:text-stone-100 flex items-center gap-2">
-                <Quote className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
+            <div className="p-5 sm:p-6 rounded-2xl bg-indigo-50/20 dark:bg-indigo-950/20 border-2 border-indigo-300/60 dark:border-indigo-800/60 shadow-2xs space-y-3">
+              <h4 className="font-heading text-lg font-bold text-indigo-950 dark:text-indigo-200 flex items-center gap-2 pb-2 border-b border-indigo-200/50 dark:border-indigo-900/40">
+                <Quote className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                 <span>أقوال أئمة السلف والعلماء المحققين:</span>
               </h4>
               {item.scholarsSayings.map((saying, idx) => (
                 <div 
                   key={idx}
-                  className="p-4 bg-stone-100/70 dark:bg-stone-900/50 border border-stone-200 dark:border-stone-800 rounded-xl"
+                  className="p-4 bg-white dark:bg-stone-900/80 border border-indigo-200 dark:border-indigo-800/60 rounded-xl shadow-2xs"
                 >
-                  <p className="font-serif italic text-sm sm:text-base text-stone-800 dark:text-stone-200 leading-relaxed mb-2">
+                  <p className="font-serif italic text-sm sm:text-base text-stone-900 dark:text-stone-100 leading-relaxed mb-2">
                     «{saying.quote}»
                   </p>
-                  <div className="text-xs text-stone-500 dark:text-stone-400 flex items-center justify-between">
-                    <span className="font-semibold text-emerald-800 dark:text-emerald-400">{saying.scholar}</span>
+                  <div className="text-xs text-stone-500 dark:text-stone-400 flex items-center justify-between pt-2 border-t border-stone-100 dark:border-stone-800">
+                    <span className="font-bold text-emerald-800 dark:text-emerald-300">{saying.scholar}</span>
                     <span className="italic">{saying.source}</span>
                   </div>
                 </div>
@@ -293,11 +293,11 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
 
           {/* Key Takeaways */}
           {item.keyTakeaways && item.keyTakeaways.length > 0 && (
-            <div className="p-4 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40">
-              <h4 className="text-sm font-bold text-emerald-950 dark:text-emerald-200 mb-2">
+            <div className="p-5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/30 border-2 border-emerald-400/60 dark:border-emerald-800/60 shadow-2xs">
+              <h4 className="text-sm font-bold text-emerald-950 dark:text-emerald-200 mb-2 pb-1 border-b border-emerald-200/60 dark:border-emerald-800/60">
                 فوائد وخلاصات منهجية لطالب العلم:
               </h4>
-              <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+              <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
                 {item.keyTakeaways.map((point, idx) => (
                   <li key={idx}>{point}</li>
                 ))}
@@ -307,19 +307,21 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
 
           {/* Documented Sources with Volume and Page (التوثيق المنهجي الدقيق برقم المجلد والصفحة) */}
           {item.sources && item.sources.length > 0 && (
-            <div className="p-4 rounded-xl bg-stone-100/80 dark:bg-stone-900/80 border border-stone-200 dark:border-stone-800 space-y-2">
-              <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-stone-900 dark:text-stone-100">
+            <div className="p-5 rounded-2xl bg-emerald-50/30 dark:bg-emerald-950/20 border-2 border-emerald-600/40 dark:border-emerald-700/40 space-y-3 shadow-2xs">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-emerald-950 dark:text-emerald-100 pb-2 border-b border-emerald-200/60 dark:border-emerald-800/60">
                 <BookOpen className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
                 <span>التوثيق المنهجي والمصادر المعتمدة (برقم المجلد والصفحة):</span>
               </div>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
                 {item.sources.map((src, idx) => (
                   <li 
                     key={idx} 
-                    className="p-2.5 rounded-lg bg-white dark:bg-stone-800/90 border border-stone-200/70 dark:border-stone-700 flex items-center justify-between gap-2 shadow-2xs"
+                    className="p-3 rounded-xl bg-white dark:bg-stone-800/90 border border-emerald-200 dark:border-stone-700 flex items-center justify-between gap-2 shadow-2xs"
                   >
-                    <span className="font-medium text-emerald-950 dark:text-emerald-200 leading-snug">{src}</span>
-                    <span className="text-[10px] text-stone-400 dark:text-stone-500 font-mono shrink-0">موثّق</span>
+                    <span className="font-semibold text-emerald-950 dark:text-emerald-200 leading-snug">{src}</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-mono font-bold shrink-0 border border-emerald-300 dark:border-emerald-800">
+                      موثّق
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -327,15 +329,15 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
           )}
 
           {/* Student's Personal Study Notes Area */}
-          <div className="p-4 rounded-xl bg-stone-100/60 dark:bg-stone-900/60 border border-stone-200 dark:border-stone-800 space-y-2">
+          <div className="p-5 rounded-2xl bg-amber-50/40 dark:bg-amber-950/20 border-2 border-amber-300/80 dark:border-amber-800/60 space-y-2.5 shadow-2xs">
             <div className="flex items-center justify-between">
-              <label className="text-xs font-bold text-stone-800 dark:text-stone-200 flex items-center gap-1.5">
-                <StickyNote className="w-3.5 h-3.5 text-amber-600" />
+              <label className="text-xs font-bold text-amber-950 dark:text-amber-200 flex items-center gap-1.5">
+                <StickyNote className="w-4 h-4 text-amber-600" />
                 <span>ملاحظاتك وفوائدك الشخصية على هذا المرجع (تُحفظ تلقائياً في جهازك):</span>
               </label>
               {isNoteSaved && (
-                <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                  تم حفظ الفائدة بنجاح
+                <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">
+                  ✓ تم حفظ الفائدة بنجاح
                 </span>
               )}
             </div>
@@ -343,13 +345,13 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
               value={noteText}
               onChange={(e) => setNoteText(e.target.value)}
               placeholder="قيّد هنا استنباطك، أسئلتك، أو شروحات سمعتها من شيخك..."
-              className="w-full text-xs sm:text-sm p-3 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 focus:outline-none focus:border-emerald-600 h-24 resize-y"
+              className="w-full text-xs sm:text-sm p-3.5 rounded-xl border border-amber-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-200 focus:outline-none focus:border-amber-600 h-24 resize-y shadow-2xs"
             />
             <div className="flex justify-end">
               <button
                 type="button"
                 onClick={handleSaveNote}
-                className="px-4 py-1.5 rounded-lg bg-emerald-800 dark:bg-emerald-700 hover:bg-emerald-900 text-white text-xs font-medium transition-colors"
+                className="px-4 py-2 rounded-xl bg-emerald-800 dark:bg-emerald-700 hover:bg-emerald-900 text-white text-xs font-bold transition-all shadow-xs"
               >
                 حفظ الفائدة
               </button>

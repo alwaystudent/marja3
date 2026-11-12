@@ -96,18 +96,20 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Scientific Index Counter Ribbon (Full Width) */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 mt-4 w-full pt-4 border-t border-stone-200/80 dark:border-stone-800/80">
+        {/* Scientific Index Counter Ribbon (Full Width with Distinctive Color Frames) */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 w-full pt-6 border-t border-stone-200/90 dark:border-stone-800/90">
           <div 
             onClick={() => setActiveCategory('terms')}
-            className="flex items-center justify-center gap-3 p-2.5 rounded-lg bg-stone-100/60 dark:bg-stone-900/40 hover:bg-stone-200/60 dark:hover:bg-stone-800/60 cursor-pointer transition-colors"
+            className="flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-stone-900 border-2 border-emerald-500/50 hover:border-emerald-600 dark:border-emerald-700/60 dark:hover:border-emerald-400 cursor-pointer transition-all shadow-xs hover:shadow-md hover:scale-102"
           >
-            <Compass className="w-5 h-5 text-emerald-700 dark:text-emerald-400 shrink-0" />
+            <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 flex items-center justify-center shrink-0">
+              <Compass className="w-5 h-5" />
+            </div>
             <div className="text-right">
-              <div className="text-lg font-bold font-mono tabular-nums text-stone-900 dark:text-stone-100 leading-none">
+              <div className="text-xl font-bold font-mono tabular-nums text-emerald-950 dark:text-emerald-100 leading-none">
                 {totalTerms}
               </div>
-              <div className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <div className="text-xs text-stone-600 dark:text-stone-300 mt-1 font-medium">
                 مصطلحاً وتقسيماً
               </div>
             </div>
@@ -115,14 +117,16 @@ export const HeroSection: React.FC = () => {
 
           <div 
             onClick={() => setActiveCategory('essentials')}
-            className="flex items-center justify-center gap-3 p-2.5 rounded-lg bg-stone-100/60 dark:bg-stone-900/40 hover:bg-stone-200/60 dark:hover:bg-stone-800/60 cursor-pointer transition-colors"
+            className="flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-stone-900 border-2 border-amber-500/50 hover:border-amber-600 dark:border-amber-700/60 dark:hover:border-amber-400 cursor-pointer transition-all shadow-xs hover:shadow-md hover:scale-102"
           >
-            <Award className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
+            <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-300 flex items-center justify-center shrink-0">
+              <Award className="w-5 h-5" />
+            </div>
             <div className="text-right">
-              <div className="text-lg font-bold font-mono tabular-nums text-stone-900 dark:text-stone-100 leading-none">
+              <div className="text-xl font-bold font-mono tabular-nums text-amber-950 dark:text-amber-100 leading-none">
                 {totalEssentials}
               </div>
-              <div className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <div className="text-xs text-stone-600 dark:text-stone-300 mt-1 font-medium">
                 من مهمات الدين
               </div>
             </div>
@@ -130,14 +134,16 @@ export const HeroSection: React.FC = () => {
 
           <div 
             onClick={() => setActiveCategory('biographies')}
-            className="flex items-center justify-center gap-3 p-2.5 rounded-lg bg-stone-100/60 dark:bg-stone-900/40 hover:bg-stone-200/60 dark:hover:bg-stone-800/60 cursor-pointer transition-colors"
+            className="flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-stone-900 border-2 border-violet-500/50 hover:border-violet-600 dark:border-violet-700/60 dark:hover:border-violet-400 cursor-pointer transition-all shadow-xs hover:shadow-md hover:scale-102"
           >
-            <FileText className="w-5 h-5 text-teal-700 dark:text-teal-400 shrink-0" />
+            <div className="w-10 h-10 rounded-xl bg-violet-100 dark:bg-violet-950/80 text-violet-800 dark:text-violet-300 flex items-center justify-center shrink-0">
+              <FileText className="w-5 h-5" />
+            </div>
             <div className="text-right">
-              <div className="text-lg font-bold font-mono tabular-nums text-stone-900 dark:text-stone-100 leading-none">
+              <div className="text-xl font-bold font-mono tabular-nums text-violet-950 dark:text-violet-100 leading-none">
                 {totalBiographies}
               </div>
-              <div className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <div className="text-xs text-stone-600 dark:text-stone-300 mt-1 font-medium">
                 ترجمة وسيرة علمية
               </div>
             </div>
@@ -145,14 +151,16 @@ export const HeroSection: React.FC = () => {
 
           <div 
             onClick={() => setActiveCategory('books')}
-            className="flex items-center justify-center gap-3 p-2.5 rounded-lg bg-stone-100/60 dark:bg-stone-900/40 hover:bg-stone-200/60 dark:hover:bg-stone-800/60 cursor-pointer transition-colors"
+            className="flex items-center justify-center gap-3 p-3.5 rounded-2xl bg-white dark:bg-stone-900 border-2 border-teal-500/50 hover:border-teal-600 dark:border-teal-700/60 dark:hover:border-teal-400 cursor-pointer transition-all shadow-xs hover:shadow-md hover:scale-102"
           >
-            <BookOpen className="w-5 h-5 text-stone-700 dark:text-stone-400 shrink-0" />
+            <div className="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950/80 text-teal-800 dark:text-teal-300 flex items-center justify-center shrink-0">
+              <BookOpen className="w-5 h-5" />
+            </div>
             <div className="text-right">
-              <div className="text-lg font-bold font-mono tabular-nums text-stone-900 dark:text-stone-100 leading-none">
+              <div className="text-xl font-bold font-mono tabular-nums text-teal-950 dark:text-teal-100 leading-none">
                 {totalBooks}
               </div>
-              <div className="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
+              <div className="text-xs text-stone-600 dark:text-stone-300 mt-1 font-medium">
                 متناً وكتاباً محرراً
               </div>
             </div>

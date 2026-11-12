@@ -82,26 +82,30 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
             <span className="font-mono text-xs">{seerahItems.length} محطات</span>
           </div>
           
-          <div className="space-y-2.5 max-h-[75vh] overflow-y-auto pr-1">
+          <div className="space-y-3 max-h-[75vh] overflow-y-auto pr-1">
             {seerahItems.map((item, idx) => {
               const isSelected = activeMilestone?.id === item.id;
               return (
                 <div
                   key={item.id}
                   onClick={() => setSelectedMilestone(item)}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer relative ${
+                  className={`p-4 rounded-2xl border-2 transition-all cursor-pointer relative shadow-2xs ${
                     isSelected
-                      ? 'bg-white dark:bg-[#14201C] border-emerald-700 dark:border-emerald-500 shadow-md ring-1 ring-emerald-600/20'
-                      : 'bg-white/60 dark:bg-stone-900/40 border-stone-200 dark:border-stone-800 hover:bg-white dark:hover:bg-stone-800/80'
+                      ? 'bg-emerald-50/70 dark:bg-[#14201C] border-emerald-600 dark:border-emerald-400 shadow-md ring-2 ring-emerald-500/20'
+                      : 'bg-white dark:bg-stone-900/60 border-stone-200 dark:border-stone-800 hover:border-emerald-300 dark:hover:border-emerald-700/60'
                   }`}
                 >
-                  <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 mb-1.5">
+                  <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-mono font-bold text-[11px] flex items-center justify-center shrink-0">
+                      <span className={`w-7 h-7 rounded-xl font-mono font-bold text-xs flex items-center justify-center shrink-0 ${
+                        isSelected 
+                          ? 'bg-emerald-700 text-white shadow-xs' 
+                          : 'bg-stone-200 dark:bg-stone-800 text-stone-700 dark:text-stone-300'
+                      }`}>
                         {idx + 1}
                       </span>
                       {item.timelineYear && (
-                        <span className="font-mono text-emerald-800 dark:text-emerald-400 font-medium">
+                        <span className="font-mono text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 font-bold border border-emerald-300 dark:border-emerald-800">
                           {item.timelineYear}
                         </span>
                       )}
@@ -160,12 +164,12 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
 
         {/* Milestone Detail Inspector (7 cols on lg) */}
         {activeMilestone ? (
-          <div className="lg:col-span-7 bg-white dark:bg-[#151F1C] border border-stone-200 dark:border-stone-800 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm sticky top-20">
+          <div className="lg:col-span-7 bg-white dark:bg-[#121B18] border-2 border-emerald-600/50 dark:border-emerald-500/40 rounded-2xl p-6 sm:p-8 space-y-6 shadow-md sticky top-20">
             
             {/* Header info with prominent Edit and Delete controls */}
             <div>
               <div className="flex items-center justify-between text-xs text-stone-500 dark:text-stone-400 mb-2">
-                <span className="font-mono text-emerald-800 dark:text-emerald-400 font-semibold text-sm">
+                <span className="font-mono text-emerald-800 dark:text-emerald-400 font-bold text-sm px-3 py-1 rounded-lg bg-emerald-100/70 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800">
                   {activeMilestone.timelineYear || 'السيرة النبوية'}
                 </span>
 
@@ -185,7 +189,7 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
                   {onShare && (
                     <button
                       onClick={() => onShare(activeMilestone)}
-                      className="p-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-emerald-700 transition-colors flex items-center gap-1 text-xs"
+                      className="p-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-emerald-700 transition-colors flex items-center gap-1 text-xs border border-stone-200 dark:border-stone-700"
                       title="مشاركة ونشر هذه المحطة في السيرة"
                     >
                       <Share2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
@@ -195,7 +199,7 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
 
                   <button
                     onClick={() => onEdit(activeMilestone)}
-                    className="p-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-emerald-700 transition-colors flex items-center gap-1 text-xs"
+                    className="p-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 hover:text-emerald-700 transition-colors flex items-center gap-1 text-xs border border-stone-200 dark:border-stone-700"
                     title="تعديل محتوى المحطة"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
@@ -204,7 +208,7 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
 
                   <button
                     onClick={() => handleDeleteMilestone(activeMilestone)}
-                    className="p-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-500 hover:text-rose-600 transition-colors"
+                    className="p-1.5 rounded-lg bg-stone-100 dark:bg-stone-800 text-stone-500 hover:text-rose-600 transition-colors border border-stone-200 dark:border-stone-700"
                     title="حذف المحطة"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -224,15 +228,15 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
             </div>
 
             {/* Narrative Content */}
-            <div className="text-stone-800 dark:text-stone-200 text-sm sm:text-base leading-relaxed whitespace-pre-line border-t border-stone-100 dark:border-stone-800 pt-4">
+            <div className="text-stone-800 dark:text-stone-200 text-sm sm:text-base leading-relaxed whitespace-pre-line border-t border-stone-200/60 dark:border-stone-800 pt-4">
               {activeMilestone.content}
             </div>
 
             {/* Quran / Hadith proofs */}
             {activeMilestone.proofs && activeMilestone.proofs.length > 0 && (
-              <div className="bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/60 dark:border-amber-900/40 rounded-xl p-4 space-y-2">
+              <div className="bg-amber-50/70 dark:bg-amber-950/30 border-2 border-amber-300 dark:border-amber-800/80 rounded-2xl p-4.5 space-y-2 shadow-2xs">
                 <h5 className="font-heading font-bold text-sm text-amber-950 dark:text-amber-200 flex items-center gap-2">
-                  <Quote className="w-3.5 h-3.5 text-amber-700" />
+                  <Quote className="w-4 h-4 text-amber-700 dark:text-amber-400" />
                   <span>الشواهد القرآنية والنبوية:</span>
                 </h5>
                 {activeMilestone.proofs.map((proof, idx) => (
@@ -245,11 +249,11 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
 
             {/* Key Takeaways */}
             {activeMilestone.keyTakeaways && activeMilestone.keyTakeaways.length > 0 && (
-              <div className="bg-emerald-50/50 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-900/40 rounded-xl p-4">
+              <div className="bg-emerald-50/70 dark:bg-emerald-950/30 border-2 border-emerald-400/60 dark:border-emerald-800/80 rounded-2xl p-4.5 shadow-2xs">
                 <h5 className="font-bold text-xs text-emerald-950 dark:text-emerald-200 mb-2">
                   الدروس والعبر العقدية والتربوية:
                 </h5>
-                <ul className="list-disc list-inside space-y-1 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+                <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-stone-700 dark:text-stone-300">
                   {activeMilestone.keyTakeaways.map((k, idx) => (
                     <li key={idx}>{k}</li>
                   ))}
@@ -258,14 +262,14 @@ export const SeerahTimelineView: React.FC<SeerahTimelineViewProps> = ({
             )}
 
             {/* Sources & Full View CTA */}
-            <div className="pt-4 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between text-xs text-stone-500">
-              <div>
-                <span className="font-bold text-stone-700 dark:text-stone-300">المصادر:</span>{' '}
-                {activeMilestone.sources?.join(' · ') || 'كتب السيرة المعتمدة'}
+            <div className="pt-4 border-t border-stone-200/60 dark:border-stone-800 flex items-center justify-between text-xs text-stone-500">
+              <div className="p-2.5 rounded-xl bg-stone-100/80 dark:bg-stone-900 border border-stone-200 dark:border-stone-800">
+                <span className="font-bold text-stone-800 dark:text-stone-200 ml-1">المصادر المعتمدة:</span>
+                <span className="text-emerald-900 dark:text-emerald-300">{activeMilestone.sources?.join(' · ') || 'كتب السيرة المعتمدة'}</span>
               </div>
               <button
                 onClick={() => onOpenDetail(activeMilestone)}
-                className="text-emerald-800 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1"
+                className="px-3.5 py-2 rounded-xl bg-emerald-800 text-white font-bold hover:bg-emerald-900 transition-colors flex items-center gap-1.5 text-xs shadow-xs"
               >
                 <span>مطالعة كاملة</span>
                 <ArrowLeft className="w-3.5 h-3.5" />

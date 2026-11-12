@@ -177,31 +177,48 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <span>أقسام المراجع العلمية</span>
             </div>
 
-            <nav className="space-y-1">
+            <nav className="space-y-1.5">
               {navItems.map((item) => {
                 const isActive = activeCategory === item.id;
+                
+                // Color badges for each section
+                const getSectionColor = (id: string) => {
+                  switch (id) {
+                    case 'all': return 'text-stone-600 dark:text-stone-300 group-hover:text-stone-900';
+                    case 'terms': return 'text-emerald-700 dark:text-emerald-400';
+                    case 'pillars_matrix': return 'text-blue-700 dark:text-blue-400';
+                    case 'essentials': return 'text-amber-700 dark:text-amber-400';
+                    case 'biographies': return 'text-violet-700 dark:text-violet-400';
+                    case 'seerah': return 'text-rose-700 dark:text-rose-400';
+                    case 'books': return 'text-teal-700 dark:text-teal-400';
+                    case 'media': return 'text-cyan-700 dark:text-cyan-400';
+                    case 'favorites': return 'text-amber-600 dark:text-amber-400';
+                    default: return 'text-emerald-700';
+                  }
+                };
+
                 return (
                   <button
                     key={item.id}
                     onClick={() => handleSelectNav(item.id)}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all group border ${
                       isActive
-                        ? 'bg-emerald-800/15 dark:bg-emerald-950/70 text-emerald-950 dark:text-emerald-200 font-bold border-r-4 border-emerald-700 dark:border-emerald-400 shadow-xs'
-                        : 'text-stone-700 dark:text-stone-300 hover:bg-stone-200/50 dark:hover:bg-stone-800/50'
+                        ? 'bg-emerald-800/15 dark:bg-emerald-950/70 text-emerald-950 dark:text-emerald-100 font-bold border-emerald-600/70 dark:border-emerald-500 shadow-sm border-r-4'
+                        : 'border-transparent text-stone-700 dark:text-stone-300 hover:bg-white dark:hover:bg-stone-800/80 hover:border-stone-200 dark:hover:border-stone-700'
                     }`}
                   >
                     <div className="flex items-center gap-2.5">
-                      <span className={isActive ? 'text-emerald-700 dark:text-emerald-400' : 'text-stone-400'}>
+                      <span className={`p-1 rounded-md bg-stone-100 dark:bg-stone-800 ${getSectionColor(item.id)} shrink-0`}>
                         {item.icon}
                       </span>
-                      <span>{item.label}</span>
+                      <span className="truncate">{item.label}</span>
                     </div>
 
                     <span
-                      className={`text-[11px] font-mono px-2 py-0.5 rounded-full tabular-nums ${
+                      className={`text-[11px] font-mono px-2 py-0.5 rounded-md tabular-nums font-bold ${
                         isActive
-                          ? 'bg-emerald-800 text-white dark:bg-emerald-700'
-                          : 'bg-stone-200/80 text-stone-600 dark:bg-stone-800 dark:text-stone-400'
+                          ? 'bg-emerald-800 text-white dark:bg-emerald-700 shadow-2xs'
+                          : 'bg-stone-200/80 text-stone-700 dark:bg-stone-800 dark:text-stone-300'
                       }`}
                     >
                       {item.count}
